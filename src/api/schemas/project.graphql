@@ -1,0 +1,21 @@
+type Project {
+  id: ID!
+  project_name: String!
+  company: Company!
+  supervisor: User!
+  employees: [User]
+}
+
+type Query {
+  projectById(projectId: ID!): Project
+  projects: [Project]
+  projectsByCompany(company_id: ID!): [Project]
+}
+
+type Mutation {
+  addProject(project_name: String!, company_id: ID!): Project!
+  updateProject(id: ID!, project_name: String!): Project!
+  addEmployeeToProject(project_id: ID!, user_id: ID!): Project!
+  removeEmployeeFromProject(project_id: ID!, user_id: ID!): Project!
+  deleteProject(id: ID!): Project!
+}

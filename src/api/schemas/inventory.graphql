@@ -1,0 +1,17 @@
+type Inventory {
+    id: ID!
+    project: Project!
+    items: [Item]
+}
+
+type Query {
+    inventories: [Inventory]
+    inventoryById(id: ID!): Inventory
+    inventoryByProjectId(projectId: ID!): Inventory
+}
+
+type Mutation {
+    addInventory(projectId: ID!): Inventory
+    deleteInventory(id: ID!): Inventory
+    addItemToInventory(inventoryId: ID!, itemId: ID!): Inventory
+}

@@ -1,0 +1,22 @@
+scalar DateTime
+
+type HourReport {
+    id: ID!
+    task: String!
+    employee: User!
+    project: Project!
+    time_worked: String!
+    posted_at: DateTime!
+}
+
+type Query {
+    hourReport(id: ID!): HourReport
+    hourReports: [HourReport]
+    hourReportsByProject(projectId: ID!): [HourReport]
+}
+
+type Mutation {
+    addHourReport(task: String!, projectId: ID!, time_worked: String!): HourReport
+    updateHourReport(id: ID!, task: String!, project: ID!, time_worked: Int!): HourReport
+    deleteHourReport(id: ID!): HourReport
+}

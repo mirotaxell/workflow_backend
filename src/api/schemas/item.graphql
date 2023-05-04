@@ -1,0 +1,20 @@
+scalar DateTime
+
+type Item {
+    id: ID!
+    item_name: String!
+    posted_at: DateTime
+    amount: String!
+}
+
+type Query {
+    items: [Item]
+    item(id: ID!): Item
+}
+
+type Mutation {
+    addItem(item_name: String!, amount: String!): Item!
+    addItemAndAddToInventory(item_name: String!, amount: String!, inventoryId: ID!): Item!
+    updateItem(id: ID!, item_name: String, amount: String): Item!
+    deleteItem(id: ID!): Item!
+}

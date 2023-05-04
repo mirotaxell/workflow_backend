@@ -1,0 +1,19 @@
+type Company {
+  id: ID!
+  company_name: String!
+  owner: User!
+  employees: [User]
+}
+
+type Query {
+  companyById(id: ID!): Company
+  companies: [Company]
+}
+
+type Mutation {
+  addCompany(company_name: String!): Company!
+  addEmployeeToCompany(company_id: ID!, user_id: ID!): Company!
+  removeEmployeeFromCompany(company_id: ID!, user_id: ID!): Company!
+  updateCompany(id: ID!, company_name: String!): Company!
+  deleteCompany(id: ID!): Company!
+}

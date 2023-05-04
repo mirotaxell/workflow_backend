@@ -1,0 +1,30 @@
+scalar DateTime
+
+type TextReport {
+    id: ID!
+    employee: User!
+    project: Project!
+    title: String!
+    text: String!
+    posted_at: DateTime!
+}
+
+type Query {
+    textReports: [TextReport]
+    textReport(id: ID!): TextReport
+    textReportsByProject(projectId: ID!): [TextReport]
+}
+
+type Mutation {
+    addTextReport(
+        projectId: ID!
+        title: String!
+        text: String!
+    ): TextReport!
+    updateTextReport(
+        id: ID!
+        title: String
+        text: String
+    ): TextReport!
+    deleteTextReport(id: ID!): TextReport!
+}
