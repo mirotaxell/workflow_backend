@@ -7,6 +7,8 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
+    "copyGraphql": "copyfiles --error src/api/schemas/*.graphql dist",
+    "postbuild": "npm run copyGraphql",
     "lint": "eslint --fix src test",
     "test": "jest --detectOpenHandles --forceExit --silent=false"
   },
