@@ -13,8 +13,6 @@ import {
 import {notFound, errorHandler} from './middlewares';
 import authenticate from './utils/auth.function';
 import {MyContext} from './interfaces/interfaces';
-import {createRateLimitRule} from 'graphql-rate-limit';
-import {shield} from 'graphql-shield';
 import {applyMiddleware} from 'graphql-middleware';
 import {makeExecutableSchema} from '@graphql-tools/schema';
 
@@ -22,28 +20,11 @@ const app = express();
 
 (async () => {
   try {
-    const rateLimitRule = createRateLimitRule({
-      identifyContext: (ctx) => ctx.id,
-    });
-
-    const permissions = shield(
-      {
-        Mutation: {
-          login: rateLimitRule({window: '1s', max: 5}),
-        },
-      },
-      {
-        debug: true,
-        allowExternalErrors: true,
-      }
-    );
-
     const schema = applyMiddleware(
       makeExecutableSchema({
         typeDefs,
         resolvers,
-      }),
-      permissions
+      })
     );
 
     app.use(
